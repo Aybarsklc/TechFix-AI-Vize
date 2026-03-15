@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechFix AI Prototype</title>
+    <!-- React & ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#0b1120',
+                        charcoal: '#1e293b',
+                        neon: '#06b6d4', // Cyan 500
+                        neonDark: '#0891b2', // Cyan 600
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0b1120;
+            color: #f8fafc;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .animate-fade-in { animation: fadeIn 0.4s ease-out; }
+        .animate-slide-up { animation: slideUp 0.3s ease-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        // Icons
+        const DashboardIcon = () => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+        );
+
+        const ManualsIcon = () => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+        );
+
+        const ProfileIcon = () => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        );
+
+        const SearchIcon = () => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        );
+        
+        const AlertTriangleIcon = () => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-yellow-500"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+        );
+
+        const ScanIcon = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>
+        );
+
+        const DashboardScreen = () => {
+            const [searchQuery, setSearchQuery] = useState('');
+            const [diagnosticResult, setDiagnosticResult] = useState(null);
+
+            const handleSearch = (e) => {
+                const query = e.target.value;
+                setSearchQuery(query);
+
+                if (query.trim() === '50.4') {
+                    setDiagnosticResult({
+                        title: 'Fuser Unit Error detected',
+                        action: 'Reseat fuser unit, check power source, and restart.',
+                        severity: 'high'
+                    });
+                } else if (query.trim() === '13.01') {
+                    setDiagnosticResult({
+                        title: 'Paper Jam in Tray 2',
+                        action: 'Open the side cover, clear the paper path, and check rollers.',
+                        severity: 'medium'
+                    });
+                } else if (query.trim() === '59.F0') {
+                    setDiagnosticResult({
+                        title: 'Transfer Belt Issue',
+                        action: 'Reseat the ITB and check the fuser drive gear for rotation.',
+                        severity: 'high'
+                    });
+                } else if (query.trim() === '41.03') {
+                    setDiagnosticResult({
+                        title: 'Paper Size Mismatch',
+                        action: 'Check Tray 2 settings and ensure the paper guides are snug against the paper.',
+                        severity: 'medium'
+                    });
+                } else if (query.trim() === '79' || query.trim().toLowerCase() === '79 service error') {
+                    setDiagnosticResult({
+                        title: 'Firmware Corruption',
+                        action: 'Perform a Cold Reset and update the printer firmware via JetDirect.',
+                        severity: 'high'
+                    });
+                } else if (query.trim() === '005' || query.trim().toLowerCase() === 'banka atm - 005') {
+                    setDiagnosticResult({
+                        title: 'Communication Timeout',
+                        action: 'Check the RS232 cable and reset the modem.',
+                        severity: 'high'
+                    });
+                } else if (query.trim() === '') {
+                    setDiagnosticResult(null);
+                } else {
+                    setDiagnosticResult({
+                        title: 'Unknown Error Code',
+                        action: 'Please refer to the detailed manual or consult tier 2 support.',
+                        severity: 'low'
+                    });
+                }
+            };
+
+            return (
+                <div className="flex flex-col h-full p-6 animate-fade-in pb-24">
+                    <header className="mb-8 mt-4">
+                        <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon to-blue-500 tracking-tight">TechFix AI</h1>
+                        <p className="text-sm text-slate-400 mt-1">Intelligent Hardware Diagnostics</p>
+                    </header>
+
+                    <div className="relative mb-8 group">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-neon transition-colors">
+                            <SearchIcon />
+                        </div>
+                        <input
+                            type="text"
+                            className="bg-charcoal border border-slate-700/50 text-white text-sm outline-none rounded-xl focus:ring-2 focus:ring-neon focus:border-transparent block w-full pl-10 p-4 shadow-lg transition-all"
+                            placeholder="Enter HP Error Code..."
+                            value={searchQuery}
+                            onChange={handleSearch}
+                        />
+                        <button className="absolute inset-y-0 right-2 flex items-center p-2 text-slate-400 hover:text-neon transition-colors">
+                            <ScanIcon className="w-5 h-5" />
+                        </button>
+                    </div>
+
+                    {diagnosticResult && (
+                        <div className="bg-charcoal/80 border border-slate-700/50 rounded-2xl p-5 shadow-2xl backdrop-blur-sm animate-slide-up relative overflow-hidden">
+                            <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-neon to-blue-500"></div>
+                            <div className="flex items-start mb-4">
+                                <div className="p-2 bg-slate-800 rounded-lg mr-4 shadow-inner">
+                                    <AlertTriangleIcon />
+                                </div>
+                                <div>
+                                    <h3 className="text-lg font-semibold text-white">{diagnosticResult.title}</h3>
+                                    <span className="inline-block mt-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-500/10 text-red-400 border border-red-500/20">
+                                        Action Required
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="bg-navy/50 rounded-xl p-4 border border-slate-800">
+                                <p className="text-slate-300 text-sm leading-relaxed">
+                                    <span className="text-neon font-semibold mr-2">ACTION:</span> 
+                                    {diagnosticResult.action}
+                                </p>
+                            </div>
+                            <button className="w-full mt-4 bg-gradient-to-r from-neon to-blue-600 hover:from-neonDark hover:to-blue-700 text-white font-medium py-3 px-4 rounded-xl transition-all shadow-lg shadow-neon/20 active:scale-95">
+                                View Detailed Schematic
+                            </button>
+                        </div>
+                    )}
+
+                    {!diagnosticResult && (
+                        <div className="flex-1 flex flex-col items-center justify-center text-slate-500 mt-10">
+                            <div className="w-24 h-24 mb-6 rounded-full border-2 border-dashed border-slate-700 flex items-center justify-center bg-slate-800/20">
+                                <ScanIcon className="w-10 h-10 opacity-50" />
+                            </div>
+                            <p className="text-center text-sm max-w-xs leading-relaxed text-yellow-500 font-medium">Lütfen bir hata kodu girin.</p>
+                            
+                            <div className="mt-8 flex flex-wrap justify-center gap-3">
+                                <span className="px-3 py-1.5 rounded-lg bg-charcoal text-xs font-mono text-slate-400 border border-slate-800 cursor-pointer hover:border-slate-600 transition-colors" onClick={() => handleSearch({target: {value: '59.F0'}})}>Try: 59.F0</span>
+                                <span className="px-3 py-1.5 rounded-lg bg-charcoal text-xs font-mono text-slate-400 border border-slate-800 cursor-pointer hover:border-slate-600 transition-colors" onClick={() => handleSearch({target: {value: '79'}})}>Try: 79</span>
+                                <span className="px-3 py-1.5 rounded-lg bg-charcoal text-xs font-mono text-slate-400 border border-slate-800 cursor-pointer hover:border-slate-600 transition-colors" onClick={() => handleSearch({target: {value: '005'}})}>Try: 005</span>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        const ManualsScreen = () => (
+            <div className="flex flex-col h-full p-6 animate-fade-in pb-24">
+                <header className="mb-6 mt-4">
+                    <h1 className="text-2xl font-bold text-white">Service Manuals</h1>
+                </header>
+                <div className="space-y-4">
+                    {[
+                        { title: 'HP LaserJet Pro MFP', code: 'M428fdw', size: '24 MB' },
+                        { title: 'HP Color LaserJet Enterprise', code: 'M553dn', size: '18 MB' },
+                        { title: 'HP DesignJet T230', code: 'Large Format', size: '42 MB' }
+                    ].map((manual, i) => (
+                        <div key={i} className="bg-charcoal p-4 rounded-2xl border border-slate-800 flex items-center justify-between hover:border-slate-600 transition-colors cursor-pointer">
+                            <div className="flex items-center">
+                                <div className="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center text-neon mr-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                </div>
+                                <div>
+                                    <h4 className="text-white font-medium text-sm">{manual.title}</h4>
+                                    <p className="text-slate-400 text-xs mt-1">{manual.code} • {manual.size}</p>
+                                </div>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-slate-500"><path d="M9 18l6-6-6-6"/></svg>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+
+        const ProfileScreen = () => (
+            <div className="flex flex-col h-full p-6 animate-fade-in pb-24">
+                <header className="mb-8 mt-4">
+                    <h1 className="text-2xl font-bold text-white">Technician Profile</h1>
+                </header>
+                
+                <div className="bg-charcoal rounded-3xl p-6 relative overflow-hidden border border-slate-700/50 shadow-xl group mb-6">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-neon/10 rounded-full blur-3xl -mr-10 -mt-10 transition-all group-hover:bg-neon/20"></div>
+                    
+                    <div className="flex items-center mb-8 relative z-10">
+                        <div className="relative">
+                            <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-neon p-1">
+                                <div className="w-full h-full bg-navy rounded-xl flex items-center justify-center overflow-hidden">
+                                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-slate-300"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                </div>
+                            </div>
+                            <div className="absolute -bottom-2 -right-2 bg-green-500 w-5 h-5 rounded-full border-4 border-charcoal"></div>
+                        </div>
+                        <div className="ml-5">
+                            <p className="text-xs text-neon uppercase tracking-wider font-semibold mb-1">Technician</p>
+                            <h2 className="text-2xl font-bold text-white">Aybars</h2>
+                            <p className="text-slate-400 text-sm mt-1">ID: TCH-8942-X</p>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4 relative z-10">
+                        <div className="bg-navy/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400 mb-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            <span className="text-3xl font-bold text-white mb-1">142</span>
+                            <span className="text-xs text-slate-400 uppercase tracking-wide">Repairs Completed</span>
+                        </div>
+                        <div className="bg-navy/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-purple-400 mb-2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <span className="text-3xl font-bold text-white mb-1">Level 5</span>
+                            <span className="text-xs text-slate-400 uppercase tracking-wide">Expertise</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="flex-1 bg-charcoal/50 rounded-2xl border border-slate-800 p-5">
+                    <h3 className="text-sm font-medium text-slate-300 mb-4">Recent Activity</h3>
+                    <div className="space-y-4">
+                        <div className="flex gap-3">
+                            <div className="w-2 h-2 mt-2 rounded-full bg-neon"></div>
+                            <div>
+                                <p className="text-sm text-white">Resolved Error 50.4</p>
+                                <p className="text-xs text-slate-500">2 hours ago • HP LaserJet Pro</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-3">
+                            <div className="w-2 h-2 mt-2 rounded-full bg-slate-600"></div>
+                            <div>
+                                <p className="text-sm text-white">Maintenance Call</p>
+                                <p className="text-xs text-slate-500">Yesterday • HP DesignJet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+
+        const App = () => {
+            const [activeTab, setActiveTab] = useState('dashboard');
+
+            return (
+                <div className="bg-navy min-h-screen text-slate-100 font-sans selection:bg-neon selection:text-white max-w-md mx-auto shadow-2xl overflow-hidden relative border-x border-slate-800">
+                    
+                    {/* Glow effects */}
+                    <div className="absolute top-20 left-10 w-64 h-64 bg-cyan-900/20 rounded-full blur-3xl pointer-events-none"></div>
+                    <div className="absolute bottom-40 right-10 w-64 h-64 bg-blue-900/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                    {/* Content Area */}
+                    <div className="h-screen overflow-y-auto overflow-x-hidden relative z-10 scrollbar-hide">
+                        {activeTab === 'dashboard' && <DashboardScreen />}
+                        {activeTab === 'manuals' && <ManualsScreen />}
+                        {activeTab === 'profile' && <ProfileScreen />}
+                    </div>
+
+                    {/* Bottom Navigation */}
+                    <div className="absolute bottom-0 left-0 right-0 bg-navy/90 backdrop-blur-xl border-t border-slate-800 z-50 px-6 py-4 flex justify-between items-center text-xs">
+                        <button 
+                            onClick={() => setActiveTab('dashboard')}
+                            className={`flex flex-col items-center gap-1.5 transition-colors ${activeTab === 'dashboard' ? 'text-neon' : 'text-slate-500 hover:text-slate-300'}`}
+                        >
+                            <DashboardIcon />
+                            <span>Dashboard</span>
+                        </button>
+                        <button 
+                            onClick={() => setActiveTab('manuals')}
+                            className={`flex flex-col items-center gap-1.5 transition-colors ${activeTab === 'manuals' ? 'text-neon' : 'text-slate-500 hover:text-slate-300'}`}
+                        >
+                            <ManualsIcon />
+                            <span>Manuals</span>
+                        </button>
+                        <button 
+                            onClick={() => setActiveTab('profile')}
+                            className={`flex flex-col items-center gap-1.5 transition-colors ${activeTab === 'profile' ? 'text-neon' : 'text-slate-500 hover:text-slate-300'}`}
+                        >
+                            <ProfileIcon />
+                            <span>Profile</span>
+                        </button>
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
