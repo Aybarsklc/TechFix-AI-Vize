@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechFix AI Prototype</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -39,17 +38,15 @@
 </head>
 <body class="h-screen overflow-hidden relative flex flex-col justify-between">
 
-    <!-- GLOW EFFECTS -->
     <div class="absolute top-20 left-10 w-64 h-64 bg-cyan-900/20 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute bottom-40 right-10 w-64 h-64 bg-blue-900/20 rounded-full blur-3xl pointer-events-none"></div>
 
-    <!-- HEADER / LOGO ALANI -->
     <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur-xl px-6 py-4 flex justify-between items-center z-10 shadow-lg">
         <div class="flex items-center gap-3">
             <span class="text-2xl text-neon">🛠️</span>
             <div>
                 <h1 class="text-xl font-bold tracking-wide text-white">TechFix AI</h1>
-                <p class="text-xs text-neon font-medium">ArtıveArtı Teknoloji Hizmetleri / Saha Destek Enterprise v2.0</p>
+                <p class="text-xs text-neon font-medium">ArtıveArtı Teknoloji Hizmetleri / Saha Destek Pro Enterprise v3.0</p>
             </div>
         </div>
         <div class="text-right">
@@ -59,12 +56,9 @@
         </div>
     </header>
 
-    <!-- CONTENT AREA (DİNAMİK SAYFALAR) -->
     <div id="main-content" class="h-screen overflow-y-auto overflow-x-hidden relative z-10 scrollbar-hide pb-32">
-        <!-- Sayfa içerikleri JavaScript ile buraya basılacak -->
-    </div>
+        </div>
 
-    <!-- BOTTOM NAVIGATION -->
     <div class="absolute bottom-0 left-0 right-0 bg-slate-950/90 backdrop-blur-xl border-t border-slate-800 z-50 px-6 py-4 flex justify-between items-center text-xs">
         <button onclick="switchTab('dashboard')" id="btn-dashboard" class="flex flex-col items-center gap-1.5 transition-colors text-neon">
             <span>📊</span>
@@ -80,9 +74,8 @@
         </button>
     </div>
 
-    <!-- JAVASCRIPT ÇEKİRDEK MANTIK -->
     <script>
-        // Tam 60 Adet Kurumsal Saha Hata Kodu Veri Tabanı
+        // 60 Adet Kurumsal Saha Hata Kodu Veri Tabanı
         const vizeHataKutuphanesi = {
             "50.4": { baslik: "HP LaserJet - 50.4 Fuser Isıtıcı Hatası", cozum: "1. Cihazı kapatıp 15 dakika soğumasını bekleyin.\n2. Arka kapağı açarak Fuser ünitesinin voltaj bağlantılarını ve termistör değerlerini kontrol edin.\n3. Güç kaynağının stabil olduğundan ve doğrudan prize takılı olduğundan emin olun.\n4. Hata devam ederse Fuser ünitesini yenisiyle değiştirin.", parca: "HP Fuser Assembly (Isıtıcı Ünite)" },
             "59.F0": { baslik: "HP LaserJet - 59.F0 Transfer Belt Sürücü Hatası", cozum: "1. ITM ünitesini yerinden çıkarıp mekanik dişlilerini kontrol edin.\n2. Sağ taraftaki transfer belt motor soketlerinin tam oturduğundan emin olun.\n3. Cihazı sensör test moduna alarak fuser tahrik motorunu manuel olarak tetikleyin.\n4. Sıkışma yaratan mekanik bir parça yoksa motor değişimi uygulayın.", parca: "ITM Drive Motor / Transfer Belt" },
@@ -91,68 +84,66 @@
             "13.00.00": { baslik: "HP LaserJet - 13.00.00 Genel Kağıt Sıkışma Hatası", cozum: "1. Kağıt yolundaki tüm tepsileri ve arka kapağı açıp sıkışan kağıt parçalarını cımbız yardımıyla temizleyin.\n2. Patenleri alkollü solüsyon ile temizleyerek aşınma durumunu inceleyin.\n3. Kağıt geçiş sensör bayrakçıklarının mekanik olarak serbest hareket ettiğini elinizle kontrol edin.", parca: "Paper Pickup Roller / Kağıt Sensörü" },
             "57.00.03": { baslik: "HP LaserJet - 57.00.03 Anakart Soğutma Fanı Arızası", cozum: "1. Cihazın sağ yan kapağını sökerek ana kart soğutma fanının (FM1) dönmesini engelleyen toz veya kablo blokajı olup olmadığına bakın.\n2. Fanın güç soketini söküp multimetre ile 24V voltaj kontrolü yapın.\n3. Voltaj gelmesine rağmen dönmeyen fanı değiştirin.", parca: "Sub-Thermistor Cooling Fan (FM1)" },
             "182": { baslik: "ATM / Wincor CMD - 182 Nakit Çıkış (Dispenser) Sıkışma Hatası", cozum: "1. Dispenser mekanizmasını (CMD modülü) rayları üzerinde dışarı çekin.\n2. Çıkış yuvasındaki (Shutter) veya taşıma bantlarındaki yırtık/sıkışmış banknotları fiziksel olarak temizleyin.\n3. Çıkış sensörlerinin üzerindeki tozları kuru hava spreyi ile temizleyin.\n4. Sistem üzerinden Dispenser Reset komutu gönderin.", parca: "CMD Shutter Module / Transport Belt" },
-            "114": { baslik: "ATM / Wincor IDCU - 114 Motorlu Kart Okuyucu Blokajı", cozum: "1. Kart okuyucu giriş ağzındaki Anti-Skimming cihazını kontrol edin ve yabancı cisim olup olmadığına bakın.\n2. Modülün arkasındaki motor tahrik kayışının gerginliğini ve sağlamlığını inceleyin.\n3. Temizlik kartı yardımıyla okuyucu manyetik kafa ve çip pinlerini solüsyonla temizleyin.", parca: "IDCU Card Reader Head / Drive Belt" },
+            "114": { baslik: "ATM / Wincor IDCU - 114 Motorlu Kart Okuyucu Blokajı", cozum: "1. Kart okuyucu giriş ağzındaki Anti-Skimming cihazını kontrol edin ve yabancı cisim olup olmadığına bakın.\n2. Modülün arkasındaki motor tahrik kayışının gerginliğini ve sağlamlığını inceleyin.\n3. Temizlik kartı yardımıyla okuyucu manyetik kafa og çip pinlerini solüsyonla temizleyin.", parca: "IDCU Card Reader Head / Drive Belt" },
             "BGP-DOWN": { baslik: "Cisco Router - BGP Protokolü / Merkez Bağlantı Kesintisi", cozum: "1. Cisco router terminaline bağlanarak 'show ip bgp summary' komutuyla komşuluk durumunu kontrol edin.\n2. 'State' kısmında Active/Idle görüyorsanız, VPN/IPSec tünel bacaklarının durumunu kontrol edin.\n3. WAN arayüzüne girip 'shutdown' ve ardından 'no shutdown' komutlarıyla portu resetleyin.", parca: "Cisco WAN Interface / SFP Module" },
             "41.03.02": { baslik: "HP LaserJet - 41.03.02 Medya Boyutu Algılama Hatası", cozum: "1. Tepsiye koyulan kağıtların kılavuz mandallarını tam sıkıştırın.\n2. Tepsinin arka kısmında bulunan boyut algılama switch kartını kontrol edin.\n3. Sensör kontaklarında oksitlenme varsa kontak sprey sıkın.", parca: "Paper Size Sensor Assembly" },
-            "002": { baslik: "ATM / Wincor EPP - 002 Güvenli Şifre Klavyesi İletişim Hatası", cozum: "1. ATM PC arkasındaki EPP USB/Seri kablo bağlantısını söküp temizleyerek tekrar takın.\n2. Cihazın donanım sürücüsünü yeniden yükleyin.\n3. Tamamen kilitlenen veya tamper moduna düşen klavyeyi merkezden yeni anahtar yükleyerek resetleyin.", parca: "EPP V6 Encryption Pinpad" },
+            "002": { baslik: "ATM / Wincor EPP - 002 Güvenli Şifre Klavyesi İletişim Hatası", cozum: "1. ATM PC arkasındaki EPP USB/Seri kablo bağlantısını söküp temizleyerek tekrar takın.\n2. Donanım sürücüsünü yeniden yükleyin.\n3. Tamamen kilitlenen veya tamper moduna düşen klavyeyi merkezden yeni anahtar yükleyerek resetleyin.", parca: "EPP V6 Encryption Pinpad" },
             "152": { baslik: "ATM / Journal Printer - 152 Makbuz Yazıcı Sıkışması", cozum: "1. Journal rulo kağıt haznesini açın, sıkışmış veya katlanmış termal kağıtları temizleyin.\n2. Otomatik kesici bıçağın mekanik yuvasına geri çekilip çekilmediğini elinizle kontrol edin.\n3. Termal kafa üzerindeki rulo baskı milini temizleyin.", parca: "Thermal Receipt Cutter / Paper Sensor" },
             "30.01.44": { baslik: "HP Enterprise - 30.01.44 ADF Tarayıcı Kalibrasyon Arızası", cozum: "1. Üst doküman besleyici (ADF) cam şeridini mikrofiber bez ve izopropil alkol ile lekesiz temizleyin.\n2. Tarayıcı optik lamba mekanizmasının taşıyıcı raylar üzerinde serbest kaydığından emin olun.\n3. Optik okuyucu CCD sensör bloğu arızalı ise üst komple tarayıcıyı değiştirin.", parca: "ADF Scanner Flat Cable / CCD Optic Bar" },
-            "HIGH-CPU": { baslik: "Cisco Router - %100 CPU Limit Aşımı / Aşırı Yük Arızası", cozum: "1. Terminale bağlanıp 'show processes cpu sorted' komutu ile işlemciyi en çok yoran süreci bulun.\n2. Döngü (Loop) şüphesi varsa 'show interfaces' ile paket girdi-çıktı oranlarını inceleyin.\n3. CPU'yu korumak amacıyla gereksiz debug loglama süreçlerini kapatın.", parca: "Cisco Core Engine / RAM Module" },
-            "LOOP-DETECT": { baslik: "Network Switch - Katman 2 Döngü (STP Loop) Hatası", cozum: "1. Switch üzerindeki tüm port LED'lerinin aynı anda aşırı hızlı yanıp söndüğünü doğrulayın.\n2. Switch konsoluna bağlanıp 'show spanning-tree blockedports' komutunu çalıştırın.\n3. Şube içinde iki ucu da switch'e takılmış olan hatalı ring kablosunu fiziksel olarak sökün.", parca: "Switch Firmware / STP Configuration" },
-            "009": { baslik: "ATM / Wincor IDCU - 009 Kart Giriş Kapağı Mekanik Arızası", cozum: "1. Kart okuyucu modülün en önünde yer alan mekanik Shutter kapağının yayını ve dişlilerini kontrol edin.\n2. Kapak açma motorunu tetikleyen mikro-sensörün kontak durumunu ölçün.\n3. IDCU modül test yazılımından kapak açma/kapama döngü testini çalıştırın.", parca: "IDCU Shutter Mechanical Gate" },
-
-            // Yeni Eklenen 44 Hata Kodu (Toplam: 60)
-            "10.00.00": { baslik: "HP LaserJet - 10.00.00 Siyah Toner Sarf Malzemesi Hatası", cozum: "1. Siyah toner kartuşunu çıkarıp çip kontaklarını temizleyin.\n2. Toneri sallayıp yerine tam oturtun.\n3. Devam ederse çip arızası veya sahte toner engellemesidir, orijinal sarf malzemesi kullanın.", parca: "Black Toner Cartridge Chip" },
-            "10.23.60": { baslik: "HP LaserJet - 10.23.60 Atık Toner Kutusu Dolu Hatası", cozum: "1. Atık toner toplama ünitesini (Waste Toner Bottle) yerinden çıkarın.\n2. Optik doluluk sensör penceresini temiz bezle silin.\n3. Kutu tamamen doluysa yenisiyle değiştirin.", parca: "Waste Toner Collection Unit" },
+            "HIGH-CPU": { baslik: "Cisco Router - %100 CPU Limit Aşımı / Aşırı Yük Arızası", cozum: "1. Terminale bağlanıp 'show processes cpu sorted' komutu ile işlemciyi en çok yoran süreci bulun.\n2. 'show interfaces' ile paket girdi-çıktı oranlarını inceleyin.\n3. CPU'yu korumak amacıyla gereksiz debug loglama süreçlerini kapatın.", parca: "Cisco Core Engine / RAM Module" },
+            "LOOP-DETECT": { baslik: "Network Switch - Katman 2 Döngü (STP Loop) Hatası", cozum: "1. Switch üzerindeki tüm port LED'lerinin aynı anda aşırı hızlı yanıp söndüğünü doğrulayın.\n2. Switch konsoluna bağlanıp 'show spanning-tree blockedports' komutunu çalıştırın.\n3. Hatalı ring kablosunu fiziksel olarak sökün.", parca: "Switch Firmware / STP Configuration" },
+            "009": { baslik: "ATM / Wincor IDCU - 009 Kart Giriş Kapağı Mekanik Arızası", cozum: "1. Mekanik Shutter kapağının yayını ve dişlilerini kontrol edin.\n2. Kapak açma motorunu tetikleyen mikro-sensörün kontak durumunu ölçün.\n3. IDCU modül test yazılımından kapak açma/kapama döngü testini çalıştırın.", parca: "IDCU Shutter Mechanical Gate" },
+            "10.00.00": { baslik: "HP LaserJet - 10.00.00 Siyah Toner Sarf Malzemesi Hatası", cozum: "1. Siyah toner kartuşunu çıkarıp çip kontaklarını temizleyin.\n2. Toneri sallayıp yerine tam oturtun.", parca: "Black Toner Cartridge Chip" },
+            "10.23.60": { baslik: "HP LaserJet - 10.23.60 Atık Toner Kutusu Dolu Hatası", cozum: "1. Atık toner toplama ünitesini yerinden çıkarın.\n2. Optik doluluk sensör penceresini temiz bezle silin.\n3. Kutu tamamen doluysa yenisiyle değiştirin.", parca: "Waste Toner Collection Unit" },
             "32.1C.05": { baslik: "HP LaserJet - 32.1C.05 Dahili Depolama NVRAM Hatası", cozum: "1. Cihazı kapatıp 30 saniye bekledikten sonra açılışta NVRAM initialization komutunu tetikleyin.\n2. Anakart üzerindeki flash bellek soketini kontrol edin.", parca: "Formatter Board NVRAM Flash" },
             "40.00.01": { baslik: "HP LaserJet - 40.00.01 USB Giriş / I/O İletişim Hatası", cozum: "1. Harici USB bağlantı kablosunu söküp doğrudan bilgisayara takın.\n2. Ön paneldeki USB portunun fiziksel pinlerinde ezilme olup olmadığını kontrol edin.", parca: "Formatter USB Port Board" },
-            "41.02.00": { baslik: "HP LaserJet - 41.02.00 Dahili Motor Geçiş Hatası", cozum: "1. Ana tahrik motoru (Engine Motor) kablo soketlerini DC Controller üzerinden söküp tekrar takın.\n2. Dişli mekanizmasında kilitlenme kontrolü yapın.", parca: "Main Drum Drive Motor" },
-            "51.00.10": { baslik: "HP LaserJet - 51.00.10 Lazer Tarayıcı (Laser/Scanner) Hatası", cozum: "1. Lazer ünitesinin (Laser Scanner) kablo bağlantılarını kontrol edin.\n2. Lazer ayna motorunun (Poligon Motor) dönmesini engelleyen tozları temizleyin.\n3. Komple üniteyi değiştirin.", parca: "Laser Scanner Assembly" },
-            "52.00.00": { baslik: "HP LaserJet - 52.00.00 Lazer Poligon Motor Hız Hatası", cozum: "1. Poligon aynasının hedef hıza ulaşamadığını gösterir.\n2. Lazer ünitesi güç kablosundaki 12V beslemesini ölçün.\n3. Sürücü kartı arızalı ise lazer ünitesini yenileyin.", parca: "Scanner Polygon Motor" },
-            "54.00.01": { baslik: "HP LaserJet - 54.00.01 Çevre Sensörü (Environment Sensor) Hatası", cozum: "1. Cihazın iç sıcaklık ve nem değerlerini ölçen sensör yuvasını bulun.\n2. Tozlanmayı temizleyin.\n3. Şube içi ortam sıcaklığının standart limitlerde (15-32°C) olmasını sağlayın.", parca: "Environment Sensor Unit" },
-            "55.00.01": { baslik: "HP LaserJet - 55.00.01 DC Controller İletişim Hatası", cozum: "1. Formatter anakartı ile DC Controller kartı arasındaki ribbon şerit kabloyu söküp pinleri temizleyin.\n2. Güç kaynağını test edin.", parca: "Engine-to-Formatter Ribbon Cable" },
-            "56.00.01": { baslik: "HP LaserJet - 56.00.01 Yanlış Çıkış Seçimi Donanım Hatası", cozum: "1. Çıkış tepsisi yönlendirme kapakçıklarının (Deflector Solenoid) mekanik yayını kontrol edin.\n2. Solenoid kablo soketini kontrol edin.", parca: "Output Deflector Solenoid" },
-            "58.00.04": { baslik: "HP LaserJet - 58.00.04 Alçak Gerilim Güç Kaynağı (LVPS) Hatası", cozum: "1. Şube priz voltajını ölçün (220V stabil olmalı).\n2. LVPS kartı üzerindeki sigortaları ve şişmiş kondansatörleri kontrol edin.\n3. Güç kartını komple değiştirin.", parca: "Low Voltage Power Supply (LVPS)" },
-            "60.00.02": { baslik: "HP LaserJet - 60.00.02 Tepsi 2 Kaldırma Motoru Hatası", cozum: "1. Tepsi 2'deki kağıt kaldırma mekanizmasının (Lifter Motor) dişlilerini inceleyin.\n2. Kağıt yükseklik algılama sensörünü temizleyin.", parca: "Tray 2 Lifter Drive Motor" },
-            "62.00.00": { baslik: "HP LaserJet - 62.00.00 Dahili Sistem Belleği (RAM) Hatası", cozum: "1. Anakart (Formatter) üzerindeki RAM slotunu açın.\n2. RAM pinlerini silgi ile temizleyip yerine sıkıca oturtun.\n3. Arıza devam ederse yeni bellek modülü takın.", parca: "DDR SO-DIMM Memory Module" },
-            "65.00.01": { baslik: "HP LaserJet - 65.00.01 Çıkış Sensörü (Output Sensor) Hatası", cozum: "1. Fuser çıkışında bulunan kağıt çıkış sensörünün (Fuser Delivery Sensor) bayrakçığını kontrol edin.\n2. Sensör kartını kuru hava ile temizleyin.", parca: "Fuser Delivery Sensor Photo-Interrupter" },
-            "66.00.15": { baslik: "HP LaserJet - 66.00.15 Harici Sonlandırıcı (Finisher) Bağlantı Hatası", cozum: "1. Yazıcıya bağlı ek harici zımba/katlama ünitesinin ara bağlantı kablosunu sökün.\n2. Finisher ünitesinin kendi güç kablosunu test edin.", parca: "Finisher Interface Cable" },
-            "68.00.01": { baslik: "HP LaserJet - 68.00.01 Depolama Alanı Dolu / Kalıcı Bellek Hatası", cozum: "1. Yazıcı web arayüzüne (EWS) bağlanarak eski log ve font dökümanlarını silin.\n2. Pre-boot menüsünden disk formatlama veya disk temizleme komutunu çalıştırın.", parca: "Internal Solid State Drive (SSD)" },
-            "80.00.01": { baslik: "HP Enterprise - 80.00.01 Gömülü Network Kartı (JetDirect) Hatası", cozum: "1. Anakart üzerindeki entegre ethernet çipinin etrafındaki bileşenleri kontrol edin.\n2. Firmware güncellemesi yapın.\n3. Harici JetDirect EIO kartı takarak ağ fonksiyonunu kurtarın.", parca: "Embedded JetDirect Network Chip" },
-            "99.00.01": { baslik: "HP Enterprise - 99.00.01 Eksik veya Bozuk İşletim Sistemi Hatası", cozum: "1. Yazıcının hard diskinin veya SSD'sinin bağlantısını kontrol edin.\n2. Pre-boot menüsüne girip USB bellek üzerinden komple temiz 'Clean Download Bundle' firmware kurulumu gerçekleştirin.", parca: "SATA Hard Disk Drive / Compact Flash" },
-            "001": { baslik: "ATM / Sistem - 001 Ana Güç Kaynağı ve UPS Kesinti Hatası", cozum: "1. ATM kabini içindeki ana şalteri ve UPS durum ekranını kontrol edin.\n2. Akü voltajlarının 12V sınırının altına düşüp düşmediğini ölçün.\n3. Şube UPS besleme hattını kontrol edin.", parca: "ATM Online UPS / Akü Grubu" },
-            "003": { baslik: "ATM / Sistem - 003 Kasa Güvenlik Kilidi (Safe Lock) Alarmı", cozum: "1. Alt para kasası kapağının (Safe Door) ve elektronik şifreli kilidin bağlantı kablolarını inceleyin.\n2. Sensör switch'inin fiziki temasını doğrulayın.", parca: "Safe Door Micro Switch / Elektronik Kilit" },
-            "004": { baslik: "ATM / Sistem - 004 Alarm Yönetim Paneli Sensör Tetiklemesi", cozum: "1. Kabin içi darbe, ısı ve sismik sensörlerin durumunu alarm panelinden (ATC Board) inceleyin.\n2. Hatalı alarm sinyalini kesmek için sensör hassasiyet ayarını potansiyometreden kalibre edin.", parca: "Seismic/Heat Sensor Board" },
-            "006": { baslik: "ATM / Sistem - 006 Depozito Ünitesi (BNA) Giriş Blokajı", cozum: "1. Para/Zarf kabul ünitesinin giriş ağzındaki mekanik paletleri kontrol edin.\n2. Sıkışan yabancı maddeleri ve zarfları temizleyin.\n3. Optik tarayıcı camlarını silin.", parca: "BNA Note Acceptor Shutter" },
-            "007": { baslik: "ATM / Sistem - 007 Kamera Güvenlik Sistemi / DVR Kayıt Hatası", cozum: "1. ATM PC arkasındaki USB kamera yakalama kartı (DVR Card) sürücülerini kontrol edin.\n2. Üst kullanıcı kamerası ve para çıkış kamerası USB kablolarını resetleyin.", parca: "USB ATM Surveillance Camera" },
-            "008": { baslik: "ATM / Sistem - 008 Barkod Okuyucu Modül Haberleşme Hatası", cozum: "1. Fatura ödeme barkod tarayıcı ünitesinin RS232/USB dönüştürücü kablosunu kontrol edin.\n2. Tarayıcı lazer lensini optik temizleyici ile silin.", parca: "Barcode Scanner Module" },
-            "010": { baslik: "ATM / Wincor - 010 Bozuk Para Verici (Coin Dispenser) Arızası", cozum: "1. Madeni para kanallarında sıkışan hatalı veya yabancı paraları ayıklayın.\n2. Bozuk para haznesi sensör soketlerini temizleyin.", parca: "Coin Dispenser Hopper Unit" },
-            "101": { baslik: "ATM / Wincor CMD - 101 Kaset 1 Boş / Para Kalmadı Uyarısı", cozum: "1. 1 numaralı para kasetini çıkarıp içindeki banknotları kontrol edin.\n2. Kaset arkasındaki ağırlık plakasının ve switch tırnağının sağlamlığını doğrulayın.\n3. ATM yazılımından para sayısını güncelleyin.", parca: "Currency Cassette 1 Tırnağı" },
-            "102": { baslik: "ATM / Wincor CMD - 102 Kaset 2 Kalibrasyon Hatası", cozum: "1. 2 numaralı kasetin banknot kalınlık ayar vidasını multimetre kılavuzuna göre milimetrik kalibre edin.\n2. Kaset içi yay mekanizmasını yağlayın.", parca: "Cassette 2 Banknot Ayar Vidası" },
-            "103": { baslik: "ATM / Wincor CMD - 103 Kaset 3 Red (Reject) Kutusu Dolu", cozum: "1. ATM kasasında bulunan hatalı/şüpheli paraların toplandığı Red (Reject/Retract) kutusunu çıkarın.\n2. İçindeki paraları boşaltıp kutu algılama sensörünü temizleyin.", parca: "Reject / Retract Box Module" },
-            "104": { baslik: "ATM / Wincor CMD - 104 Vakum Dağıtıcı (Vaccum Picker) Hava Sızıntısı", cozum: "1. Paraları kasetten çekmeye yarayan vakum vantuzlarının (Suction Cup) yırtılıp yırtılmadığını kontrol edin.\n2. Kompresör hava hortumu bağlantı rekorlarını sıkıştırın.", parca: "Pneumatic Suction Cups / Hava Hortumu" },
-            "110": { baslik: "ATM / Wincor IDCU - 110 Akıllı Kart İletişim EMV Hatası", cozum: "1. Kart okuyucunun akıllı çip okuma pinlerinde (Smart Card Contacts) bükülme olup olmadığını kontrol edin.\n2. EMV parametre sürücülerini güncelleyin.", parca: "IDCU Chip Contact Pin Block" },
-            "115": { baslik: "ATM / Wincor IDCU - 115 Manyetik Bant Okuyucu (MSR) Kafa Hatası", cozum: "1. Kartın arkasındaki manyetik şeridi okuyan MSR kafasını izopropil alkollü kart ile 5 kez temizleyin.\n2. Kafa sinyal kablosunu test edin.", parca: "MSR Magnetic Read Head" },
-            "120": { baslik: "ATM / Sistem - 120 Temassız Kart Okuyucu (NFC) Modül Arızası", cozum: "1. Dış kabindeki NFC okuyucu panelin USB bağlantısını ATM PC üzerinden söküp farklı porta takın.\n2. NFC anten sinyal gücünü test yazılımından kontrol edin.", parca: "NFC Reader Antenna Module" },
-            "150": { baslik: "ATM / Receipt Printer - 150 Müşteri Makbuz Yazıcı Kağıt Bitti", cozum: "1. ATM kapaklarını açıp makbuz (Receipt) termal rulo kağıdını yenisiyle değiştirin.\n2. Kağıdı siyah çizgili sensör yönüne dikkat ederek besleme yuvasına itin.", parca: "Thermal Receipt Paper Roll" },
-            "151": { baslik: "ATM / Receipt Printer - 151 Yazıcı Kafa Aşırı Isınma Hatası", cozum: "1. Termal yazıcı kafanın (Thermal Head) çalışma sıcaklığının limitleri aştığını gösterir.\n2. ATM kapaklarını açıp modülü 10 dakika havalandırın.\n3. Yazıcı kafa direnç değerlerini ölçün.", parca: "Thermal Print Head Assembly" },
-            "201": { baslik: "ATM / Şube - 201 Kabin İçi Isı Koruma / Klima Arızası", cozum: "1. ATM kabini arkasında bulunan harici klimanın filtrelerini ve gaz basıncını kontrol edin.\n2. Kabin içi sıcaklık termostat sensörünü test edin (22°C idealdir).", parca: "ATM Cabinet Cooling Fan / Klima" },
-            "PING-FAIL": { baslik: "Cisco Router - PING / Gateway Yanıt Vermiyor Arızası", cozum: "1. Router terminalinden 'ping 10.0.0.1' (Merkez Gateway IP'si) komutunu çalıştırın.\n2. Paket kaybı %100 ise lokal switch ve router arasındaki ara kabloyu (Patch Cord) test edin.\n3. ARP tablosunu temizleyin ('clear arp').", parca: "Cat6 Ethernet Patch Cable" },
-            "OSPF-DOWN": { baslik: "Cisco Router - OSPF Komşuluk İlişkisi Kesinti Arızası", cozum: "1. 'show ip ospf neighbor' komutu ile komşu router durumuna bakın.\n2. MTU boyutu uyumsuzluğu veya OSPF Area ID hata kontrolünü yapın.\n3. OSPF şifreleme anahtarlarını doğrulayın.", parca: "Cisco IOS OSPF Konfigürasyonu" },
-            "PORT-SECURITY": { baslik: "Cisco Switch - Port Security Hata-Kapatma (Err-Disable) Arızası", cozum: "1. Porta yetkisiz veya farklı bir MAC adresine sahip cihaz takıldığını gösterir.\n2. İlgili porta girip sırasıyla 'shutdown' ve 'no shutdown' komutlarını girerek portu kilitten kurtarın.", parca: "Switch Port MAC Table Configuration" },
-            "VLAN-MISMATCH": { baslik: "Cisco Switch - Native VLAN Uyuşmazlığı (Trunk Link) Hatası", cozum: "1. Trunk linkin iki ucundaki switch portlarında native VLAN ID'lerinin aynı olduğunu doğrulayın.\n2. 'show interfaces trunk' komutu ile VLAN yapılandırma uyumsuzluğunu giderin.", parca: "Trunk Interface Native VLAN ID" },
-            "DUPLEX-HALF": { baslik: "Cisco Switch - Duplex Mismatch / Paket Kolizyon Arızası", cozum: "1. Portun bir ucunun Full Duplex diğer ucunun Half Duplex olmasından kaynaklı paket düşmelerini inceler.\n2. Port arayüzüne girip 'duplex full' ve 'speed 1000' komutlarını manuel sabitleyin.", parca: "Switch Port Speed/Duplex Controller" },
-            "DHCP-EXHAUST": { baslik: "Cisco Router - DHCP IP Havuzu Tükenme Arızası", cozum: "1. 'show ip dhcp binding' komutuyla dağıtılan IP adreslerini listeleyin.\n2. Kira süresini (Lease Time) kısaltın veya havuz aralığını (Subnet) genişletin.\n3. Statik IP atamalarını temizleyin.", parca: "DHCP IP Pool Database" },
-            "ACL-BLOCK": { baslik: "Cisco Router - Erişim Listesi (ACL) Hatalı Paket Engelleme Hatası", cozum: "1. Şubeden merkeze giden yasal trafiğin ACL kurallarına takılıp takılmadığını inceleyin.\n2. 'show access-lists' komutuyla hangi kuralın trafiği 'drop' ettiğini bulup kural sırasını güncelleyin.", parca: "Access Control List (ACL) Rules" },
-            "STP-ROOT-FLAP": { baslik: "Network Switch - STP Root Bridge Sürekli Değişim Arızası", cozum: "1. Ağda ana köprü switch cihazının sürekli değiştiğini (Flapping) gösterir.\n2. Omurga (Core) switch portuna girip 'spanning-tree vlan X priority 4096' komutuyla Root Bridge'i sabitleyin.", parca: "Spanning Tree Protocol Priority" },
-            "SFP-ERR": { baslik: "Cisco Switch - Optik SFP Modül Okuma / RX-TX Sinyal Hatası", cozum: "1. 'show interfaces transceiver' komutu ile optik modülün gelen (RX) ve giden (TX) ışık desibellerini (dBm) ölçün.\n2. Optik patch kablo uçlarını temizleyin.", parca: "SFP Transceiver Fiber Module" },
-            "ARP-POISON": { baslik: "Siber Güvenlik - ARP Zehirlenmesi / Man-in-the-Middle Saldırısı", cozum: "1. Ağda sahte bir cihazın kendini gateway gibi tanıttığını gösterir.\n2. Switch üzerinde 'ip dhcp snooping' ve 'ip aris inspection vlan' komutlarını aktif ederek sahte ARP paketlerini engelleyin.", parca: "Dynamic ARP Inspection (DAI)" },
-            "MAC-FLAP": { baslik: "Network Switch - MAC Adresi Sürekli Yer Değiştirme Hatası", cozum: "1. Aynı MAC adresinin switch üzerinde çok kısa sürede farklı portlardan öğrenildiğini belirtir.\n2. İki switch arasında yedekli hat kablo döngüsü (Loop) kontrolü yapın.\n3. Kabloyu sökün.", parca: "MAC Address Table Flash" },
-            "CRYPTO-FAIL": { baslik: "Cisco Router - IPSec VPN Kripto Aşama 1 (Phase 1) Hatası", cozum: "1. 'show crypto isakmp sa' komutu ile tünel durumuna bakın.\n2. İki uçtaki IKEv1/IKEv2 ön paylaşımlı şifrelerinin (Pre-Shared Key) ve şifreleme algoritmalarının (AES/SHA) eşleşmesini sağlayın.", parca: "ISAKMP VPN Security Association" },
-            "NTP-UNSYNC": { baslik: "Sunucu / Sistem - NTP Zaman Senkronizasyon Kaybı Hatası", cozum: "1. ATM PC veya router sistem saatinin merkez NTP sunucusu ile senkron olmadığını inceler.\n2. 'ntp server 10.0.0.5 prefer' komutunu girerek zaman sunucusunu elle güncelleyin.", parca: "NTP Time Server Daemon" },
-            "TACACS-FAIL": { baslik: "Cisco Router - AAA / TACACS+ Kimlik Doğrulama Sunucu Hatası", cozum: "1. Router cihazına teknik personelin giriş yapamadığı durumu inceler.\n2. İlgili TACACS+ sunucusuna ping atın.\n3. Acil durum için yerel kullanıcı veri tabanını devreye alın ('login authentication local').", parca: "TACACS+ / RADIUS Server Link" },
-            "SNMP-FLOOD": { baslik: "Network Switch - Yoğun SNMP Trap / İzleme Trafiği Aşımı", cozum: "1. Şube izleme yazılımının (PRTG/SolarWinds) switch cihazını aşırı sorguladığını gösterir.\n2. Switch üzerinden SNMP community string yetkilerini sınırlandırın.\n3. Sadece belirli IP'lere izin verin.", parca: "SNMP Community Configuration" },
-            "FIBER-ATT": { baslik: "Telekom / Şube - Harici Fiber Optik Hat Yüksek Sinyal Zayıflaması", cozum: "1. Türk Telekom sonlandırma kutusundan (ODF) gelen fiber hattın db zayıflama değerini ölçün.\n2. Optik zayıflatıcı (Attenuator) kullanarak veya fiber ucu alkolle temizleyerek sinyali -20 dBm seviyesine sabitleyin.", parca: "Fiber Optik Patch Cord / Attenuator" }
+            "41.02.00": { baslik: "HP LaserJet - 41.02.00 Dahili Motor Geçiş Hatası", cozum: "1. Ana tahrik motoru kablo soketlerini DC Controller üzerinden söküp tekrar takın.\n2. Dişli mekanizmasında kilitlenme kontrolü yapın.", parca: "Main Drum Drive Motor" },
+            "51.00.10": { baslik: "HP LaserJet - 51.00.10 Lazer Tarayıcı (Laser/Scanner) Hatası", cozum: "1. Lazer ünitesinin kablo bağlantılarını kontrol edin.\n2. Lazer ayna motorunun dönmesini engelleyen tozları temizleyin.", parca: "Laser Scanner Assembly" },
+            "52.00.00": { baslik: "HP LaserJet - 52.00.00 Lazer Poligon Motor Hız Hatası", cozum: "1. Poligon aynasının hedef hıza ulaşamadığını gösterir.\n2. Lazer ünitesi güç kablosundaki 12V beslemesini ölçün.", parca: "Scanner Polygon Motor" },
+            "54.00.01": { baslik: "HP LaserJet - 54.00.01 Çevre Sensörü Hatası", cozum: "1. Cihazın iç sıcaklık ve nem değerlerini ölçen sensör yuvasını bulun.\n2. Tozlanmayı temizleyin.\n3. Şube içi ortam sıcaklığının standart limitlerde olmasını sağlayın.", parca: "Environment Sensor Unit" },
+            "55.00.01": { baslik: "HP LaserJet - 55.00.01 DC Controller İletişim Hatası", cozum: "1. Formatter anakartı ile DC Controller kartı arasındaki ribbon şerit kabloyu söküp pinleri temizleyin.", parca: "Engine-to-Formatter Ribbon Cable" },
+            "56.00.01": { baslik: "HP LaserJet - 56.00.01 Yanlış Çıkış Seçimi Donanım Hatası", cozum: "1. Çıkış tepsisi yönlendirme kapakçıklarının mekanik yayını kontrol edin.\n2. Solenoid kablo soketini kontrol edin.", parca: "Output Deflector Solenoid" },
+            "58.00.04": { baslik: "HP LaserJet - 58.00.04 Alçak Gerilim Güç Kaynağı (LVPS) Hatası", cozum: "1. Şube priz voltajını ölçün (220V stabil olmalı).\n2. LVPS kartı üzerindeki sigortaları ve şişmiş kondansatörleri kontrol edin.", parca: "Low Voltage Power Supply (LVPS)" },
+            "60.00.02": { baslik: "HP LaserJet - 60.00.02 Tepsi 2 Kaldırma Motoru Hatası", cozum: "1. Tepsi 2'deki kağıt kaldırma mekanizmasının dişlilerini inceleyin.\n2. Kağıt yükseklik algılama sensörünü temizleyin.", parca: "Tray 2 Lifter Drive Motor" },
+            "62.00.00": { baslik: "HP LaserJet - 62.00.00 Dahili Sistem Belleği (RAM) Hatası", cozum: "1. Anakart üzerindeki RAM slotunu açın.\n2. RAM pinlerini silgi ile temizleyip yerine sıkıca oturtun.", parca: "DDR SO-DIMM Memory Module" },
+            "65.00.01": { baslik: "HP LaserJet - 65.00.01 Çıkış Sensörü Hatası", cozum: "1. Fuser çıkışında bulunan kağıt çıkış sensörünün bayrakçığını kontrol edin.\n2. Sensör kartını kuru hava ile temizleyin.", parca: "Fuser Delivery Sensor Photo-Interrupter" },
+            "66.00.15": { baslik: "HP LaserJet - 66.00.15 Harici Sonlandırıcı Bağlantı Hatası", cozum: "1. Yazıcıya bağlı ek harici zımba/katlama ünitesinin ara bağlantı kablosunu sökün.\n2. Finisher ünitesinin kendi güç kablosunu test edin.", parca: "Finisher Interface Cable" },
+            "68.00.01": { baslik: "HP LaserJet - 68.00.01 Depolama Alanı Dolu / Kalıcı Bellek Hatası", cozum: "1. Yazıcı web arayüzüne bağlanarak eski log ve dökümanları silin.\n2. Pre-boot menüsünden disk formatlama veya disk temizleme komutunu çalıştırın.", parca: "Internal Solid State Drive (SSD)" },
+            "80.00.01": { baslik: "HP Enterprise - 80.00.01 Gömülü Network Kartı Hatası", cozum: "1. Anakart üzerindeki entegre ethernet çipinin etrafındaki bileşenleri kontrol edin.\n2. Firmware güncellemesi yapın.", parca: "Embedded JetDirect Network Chip" },
+            "99.00.01": { baslik: "HP Enterprise - 99.00.01 Eksik veya Bozuk İşletim Sistemi Hatası", cozum: "1. Yazıcının hard diskinin veya SSD'sinin bağlantısını kontrol edin.\n2. Pre-boot menüsüne girip temiz firmware kurulumu gerçekleştirin.", parca: "SATA Hard Disk Drive / Compact Flash" },
+            "001": { baslik: "ATM / Sistem - 001 Ana Güç Kaynağı ve UPS Kesinti Hatası", cozum: "1. ATM kabini içindeki ana şalteri ve UPS durum ekranını kontrol edin.\n2. Akü voltajlarının 12V sınırının altına düşüp düşmediğini ölçün.", parca: "ATM Online UPS / Akü Grubu" },
+            "003": { baslik: "ATM / Sistem - 003 Kasa Güvenlik Kilidi Alarmı", cozum: "1. Alt para kasası kapağının ve elektronik şifreli kilidin bağlantı kablolarını inceleyin.\n2. Sensör switch'inin fiziki temasını doğrulayın.", parca: "Safe Door Micro Switch / Elektronik Kilit" },
+            "004": { baslik: "ATM / Sistem - 004 Alarm Yönetim Paneli Sensör Tetiklemesi", cozum: "1. Kabin içi darbe, ısı ve sismik sensörlerin durumunu alarm panelinden inceleyin.\n2. Sensör hassasiyet ayarını potansiyometreden kalibre edin.", parca: "Seismic/Heat Sensor Board" },
+            "006": { baslik: "ATM / Sistem - 006 Depozito Ünitesi (BNA) Giriş Blokajı", cozum: "1. Para/Zarf kabul ünitesinin giriş ağzındaki mekanik paletleri kontrol edin.\n2. Optik tarayıcı camlarını silin.", parca: "BNA Note Acceptor Shutter" },
+            "007": { baslik: "ATM / Sistem - 007 Kamera Güvenlik Sistemi / DVR Kayıt Hatası", cozum: "1. ATM PC arkasındaki USB kamera yakalama kartı sürücülerini kontrol edin.\n2. Üst kullanıcı kamerası ve para çıkış kamerası USB kablolarını resetleyin.", parca: "USB ATM Surveillance Camera" },
+            "008": { baslik: "ATM / Sistem - 008 Barkod Okuyucu Modül Haberleşme Hatası", cozum: "1. Fatura ödeme barkod tarayıcı ünitesinin RS232/USB kablosunu kontrol edin.\n2. Tarayıcı lazer lensini optik temizleyici ile silin.", parca: "Barcode Scanner Module" },
+            "010": { baslik: "ATM / Wincor - 010 Bozuk Para Verici Arızası", cozum: "1. Madeni para kanallarında sıkışan hatalı veya yabancı paraları ayıklayın.\n2. Bozuk para haznesi sensör soketlerini temizleyin.", parca: "Coin Dispenser Hopper Unit" },
+            "101": { baslik: "ATM / Wincor CMD - 101 Kaset 1 Boş / Para Kalmadı Uyarısı", cozum: "1. 1 numaralı para kasetini çıkarıp içindeki banknotları kontrol edin.\n2. Kaset arkasındaki ağırlık plakasının ve switch tırnağının sağlamlığını doğrulayın.", parca: "Currency Cassette 1 Tırnağı" },
+            "102": { baslik: "ATM / Wincor CMD - 102 Kaset 2 Kalibrasyon Hatası", cozum: "1. 2 numaralı kasetin banknot kalınlık ayar vidasını milimetrik kalibre edin.\n2. Kaset içi yay mekanizmasını yağlayın.", parca: "Cassette 2 Banknot Ayar Vidası" },
+            "103": { baslik: "ATM / Wincor CMD - 103 Kaset 3 Red Kutusu Dolu", cozum: "1. ATM kasasında bulunan hatalı/şüpheli paraların toplandığı Red kutusunu çıkarın.\n2. İçindeki paraları boşaltıp kutu algılama sensörünü temizleyin.", parca: "Reject / Retract Box Module" },
+            "104": { baslik: "ATM / Wincor CMD - 104 Vakum Dağıtıcı Hava Sızıntısı", cozum: "1. Paraları kasetten çekmeye yarayan vakum vantuzlarının yırtılıp yırtılmadığını kontrol edin.\n2. Kompresör hava hortumu bağlantı rekorlarını sıkıştırın.", parca: "Pneumatic Suction Cups / Hava Hortumu" },
+            "110": { baslik: "ATM / Wincor IDCU - 110 Akıllı Kart İletişim EMV Hatası", cozum: "1. Kart okuyucunun akıllı çip okuma pinlerinde bükülme olup olmadığını kontrol edin.\n2. EMV parametre sürücülerini güncelleyin.", parca: "IDCU Chip Contact Pin Block" },
+            "115": { baslik: "ATM / Wincor IDCU - 115 Manyetik Bant Okuyucu Kafa Hatası", cozum: "1. Kartın arkasındaki manyetik şeridi okuyan MSR kafasını temizlik kartı ile temizleyin.\n2. Kafa sinyal kablosunu test edin.", parca: "MSR Magnetic Read Head" },
+            "120": { baslik: "ATM / Sistem - 120 Temassız Kart Okuyucu Modül Arızası", cozum: "1. Dış kabindeki NFC okuyucu panelin USB bağlantısını ATM PC üzerinden söküp farklı porta takın.\n2. NFC anten sinyal gücünü test edin.", parca: "NFC Reader Antenna Module" },
+            "150": { baslik: "ATM / Receipt Printer - 150 Müşteri Makbuz Yazıcı Kağıt Bitti", cozum: "1. Makbuz termal rulo kağıdını yenisiyle değiştirin.\n2. Kağıdı siyah çizgili sensör yönüne dikkat ederek besleme yuvasına itin.", parca: "Thermal Receipt Paper Roll" },
+            "151": { baslik: "ATM / Receipt Printer - 151 Yazıcı Kafa Aşırı Isınma Hatası", cozum: "1. Termal yazıcı kafanın çalışma sıcaklığının limitleri aştığını gösterir.\n2. ATM kapaklarını açıp modülü 10 dakika havalandırın.", parca: "Thermal Print Head Assembly" },
+            "201": { baslik: "ATM / Şube - 201 Kabin İçi Isı Koruma / Klima Arızası", cozum: "1. ATM kabini arkasında bulunan harici klimanın filtrelerini ve gaz basıncını kontrol edin.\n2. Kabin içi sıcaklık termostat sensörünü test edin.", parca: "ATM Cabinet Cooling Fan / Klima" },
+            "PING-FAIL": { baslik: "Cisco Router - PING / Gateway Yanıt Vermiyor Arızası", cozum: "1. Router terminalinden merkez gateway IP'sine ping atın.\n2. Paket kaybı varsa lokal switch ve router arasındaki Patch kabloyu test edin.\n3. ARP tablosunu temizleyin.", parca: "Cat6 Ethernet Patch Cable" },
+            "OSPF-DOWN": { baslik: "Cisco Router - OSPF Komşuluk İlişkisi Kesinti Arızası", cozum: "1. OSPF komşu router durumuna bakın.\n2. MTU boyutu uyumsuzluğu veya OSPF Area ID hata kontrolünü yapın.", parca: "Cisco IOS OSPF Konfigürasyonu" },
+            "PORT-SECURITY": { baslik: "Cisco Switch - Port Security Hata-Kapatma Arızası", cozum: "1. Porta yetkisiz bir MAC adresine sahip cihaz takıldığını gösterir.\n2. İlgili porta girip sırasıyla 'shutdown' ve 'no shutdown' komutlarını girerek kilidi açın.", parca: "Switch Port MAC Table Configuration" },
+            "VLAN-MISMATCH": { baslik: "Cisco Switch - Native VLAN Uyuşmazlığı Hatası", cozum: "1. Trunk linkin iki ucundaki switch portlarında native VLAN ID'lerinin aynı olduğunu doğrulayın.\n2. Yapılandırma uyumsuzluğunu giderin.", parca: "Trunk Interface Native VLAN ID" },
+            "DUPLEX-HALF": { baslik: "Cisco Switch - Duplex Mismatch / Paket Kolizyon Arızası", cozum: "1. Portun bir ucunun Full diğer ucunun Half olmasından kaynaklı paket düşmelerini inceler.\n2. Port arayüzüne girip duplex ve speed komutlarını sabitleyin.", parca: "Switch Port Speed/Duplex Controller" },
+            "DHCP-EXHAUST": { baslik: "Cisco Router - DHCP IP Havuzu Tükenme Arızası", cozum: "1. Dağıtılan IP adreslerini listeleyin.\n2. Kira süresini kısaltın veya havuz aralığını genişletin.", parca: "DHCP IP Pool Database" },
+            "ACL-BLOCK": { baslik: "Cisco Router - Erişim Listesi Hatalı Paket Engelleme Hatası", cozum: "1. Şubeden merkeze giden yasal trafiğin ACL kurallarına takılıp takılmadığını inceleyin.\n2. Hangi kuralın trafiği drop ettiğini bulup kural sırasını güncelleyin.", parca: "Access Control List (ACL) Rules" },
+            "STP-ROOT-FLAP": { baslik: "Network Switch - STP Root Bridge Sürekli Değişim Arızası", cozum: "1. Ağda ana köprü switch cihazının sürekli değiştiğini gösterir.\n2. Omurga switch portuna girip öncelik (priority) değerini yükselterek sabitleyin.", parca: "Spanning Tree Protocol Priority" },
+            "SFP-ERR": { baslik: "Cisco Switch - Optik SFP Modül Okuma Sinyal Hatası", cozum: "1. Optik modülün gelen (RX) ve giden (TX) ışık desibellerini ölçün.\n2. Optik patch kablo uçlarını temizleyin.", parca: "SFP Transceiver Fiber Module" },
+            "ARP-POISON": { baslik: "Siber Güvenlik - ARP Zehirlenmesi Saldırısı", cozum: "1. Ağda sahte bir cihazın kendini gateway gibi tanıttığını gösterir.\n2. Switch üzerinde 'ip dhcp snooping' ve 'ip arp inspection' komutlarını aktif edin.", parca: "Dynamic ARP Inspection (DAI)" },
+            "MAC-FLAP": { baslik: "Network Switch - MAC Adresi Sürekli Yer Değiştirme Hatası", cozum: "1. Aynı MAC adresinin switch üzerinde çok kısa sürede farklı portlardan öğrenildiğini belirtir.\n2. İki switch arasında yedekli hat kablo döngüsü kontrolü yapın.", parca: "MAC Address Table Flash" },
+            "CRYPTO-FAIL": { baslik: "Cisco Router - IPSec VPN Kripto Aşama 1 Hatası", cozum: "1. İki uçtaki ön paylaşımlı şifrelerin (Pre-Shared Key) ve şifreleme algoritmalarının (AES/SHA) eşleşmesini sağlayın.", parca: "ISAKMP VPN Security Association" },
+            "NTP-UNSYNC": { baslik: "Sunucu / Sistem - NTP Zaman Senkronizasyon Kaybı Hatası", cozum: "1. Sistem saatinin merkez NTP sunucusu ile senkron olmadığını inceler.\n2. Zaman sunucusunu terminalden elle güncelleyin.", parca: "NTP Time Server Daemon" },
+            "TACACS-FAIL": { baslik: "Cisco Router - AAA / TACACS+ Kimlik Doğrulama Sunucu Hatası", cozum: "1. Router cihazına teknik personelin giriş yapamadığı durumu inceler.\n2. Acil durum için yerel kullanıcı veri tabanını devreye alın.", parca: "TACACS+ / RADIUS Server Link" },
+            "SNMP-FLOOD": { baslik: "Network Switch - Yoğun SNMP Trap / İzleme Trafiği Aşımı", cozum: "1. Şube izleme yazılımının switch cihazını aşırı sorguladığını gösterir.\n2. Switch üzerinden SNMP community string yetkilerini sınırlandırın.", parca: "SNMP Community Configuration" },
+            "FIBER-ATT": { baslik: "Telekom / Şube - Harici Fiber Optik Hat Yüksek Sinyal Zayıflaması", cozum: "1. Gelen fiber hattın db zayıflama değerini ölçün.\n2. Optik patch kablo ucunu temizleyerek sinyali -20 dBm seviyesine sabitleyin.", parca: "Fiber Optik Patch Cord / Attenuator" }
         };
 
         let currentTab = 'dashboard';
@@ -174,7 +165,7 @@
                             <div class="flex flex-col gap-4">
                                 <label class="text-sm font-semibold text-gray-300">Hata Kodu veya Arıza Tanımı Girin:</label>
                                 <div class="flex gap-2">
-                                    <input type="text" id="errorCodeInput" placeholder="Örn: 50.4, 13.00.00, 182, BGP-DOWN, 10.23.60, PING-FAIL..." class="flex-grow bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-all text-lg font-mono uppercase">
+                                    <input type="text" id="errorCodeInput" placeholder="Örn: 50.4, 13.00.00, 182, BGP-DOWN, 10.23.60..." class="flex-grow bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-all text-lg font-mono uppercase">
                                     <button onclick="sorgulaHata()" class="bg-cyan-600 hover:bg-cyan-500 text-white font-bold px-6 rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-cyan-900/30">
                                         Teşhis Et
                                     </button>
@@ -198,7 +189,6 @@
                     </div>
                 `;
                 
-                // Enter tuşu dinleyicisi
                 document.getElementById("errorCodeInput").addEventListener("keypress", function(event) {
                     if (event.key === "Enter") { sorgulaHata(); }
                 });
@@ -226,13 +216,77 @@
                 `;
             } else if (currentTab === 'profile') {
                 contentDiv.innerHTML = `
-                    <div class="max-w-2xl mx-auto px-4 py-12 animate-fade-in text-center">
-                        <div class="w-20 h-20 bg-cyan-900/50 border border-cyan-500 text-2xl flex items-center justify-center rounded-full mx-auto mb-4">👤</div>
-                        <h2 class="text-2xl font-bold text-white">Aybars Kılıç</h2>
-                        <p class="text-cyan-400 text-sm mb-4">Saha Teknik Uzmanı</p>
-                        <div class="bg-slate-900/50 border border-slate-800 p-4 rounded-xl max-w-sm mx-auto text-left text-sm text-gray-300">
-                            <p><strong>Kurum:</strong> ArtıveArtı Teknoloji Hizmetleri</p>
-                            <p class="mt-2"><strong>Proje:</strong> Topkapı Üniversitesi Vize Ödevi</p>
+                    <div class="max-w-2xl mx-auto px-4 py-8 animate-fade-in text-center max-h-[80vh] overflow-y-auto scrollbar-hide">
+                        <div class="w-24 h-24 bg-gradient-to-tr from-cyan-500 to-blue-600 p-1 rounded-full mx-auto mb-3 shadow-lg shadow-cyan-500/20">
+                            <img src="profil.png" alt="Aybars Kılıç" class="w-full h-full rounded-full object-cover">
+                        </div>
+                        <h2 class="text-2xl font-bold text-white tracking-wide">Aybars Kılıç</h2>
+                        <p class="text-cyan-400 text-sm font-semibold tracking-wider uppercase font-mono mt-0.5">Saha Teknik Uzmanı</p>
+                        <p class="text-xs text-gray-400 mt-1">ArtıveArtı Teknoloji / Denizbank Operasyon Sorumlusu</p>
+
+                        <div class="grid grid-cols-3 gap-3 my-6 max-w-md mx-auto">
+                            <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-3 shadow-md">
+                                <div class="text-xl font-black text-white">142</div>
+                                <div class="text-[10px] text-gray-400 font-medium uppercase mt-0.5">Onarılan</div>
+                            </div>
+                            <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-3 shadow-md">
+                                <div class="text-xl font-black text-neon">4.9</div>
+                                <div class="text-[10px] text-gray-400 font-medium uppercase mt-0.5">SLA Puanı</div>
+                            </div>
+                            <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-3 shadow-md">
+                                <div class="text-xl font-black text-white">v3.0</div>
+                                <div class="text-[10px] text-gray-400 font-medium uppercase mt-0.5">Sürüm</div>
+                            </div>
+                        </div>
+
+                        <div class="max-w-md mx-auto text-left mb-6">
+                            <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2.5 px-1">Kazanılan Rozetler (Earned Badges)</h3>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="bg-slate-900/40 border border-slate-800 p-2.5 rounded-xl flex items-center gap-2">
+                                    <span class="text-lg">🖨️</span>
+                                    <span class="text-xs font-medium text-gray-200">HP Hardware Specialist</span>
+                                </div>
+                                <div class="bg-slate-900/40 border border-slate-800 p-2.5 rounded-xl flex items-center gap-2">
+                                    <span class="text-lg">🏦</span>
+                                    <span class="text-xs font-medium text-gray-200">ATM Banking Security</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="max-w-md mx-auto text-left mb-4">
+                            <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2.5 px-1">Son Kapatılan Çağrılar (History)</h3>
+                            <div class="flex flex-col gap-2">
+                                <div class="bg-slate-900/50 border border-slate-800 p-3 rounded-xl flex justify-between items-center shadow-sm">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="text-xl">💻</span>
+                                        <div>
+                                            <h4 class="text-xs font-bold text-white">HP ProBook 450 G8</h4>
+                                            <p class="text-[10px] text-gray-400 font-mono mt-0.5">Anakart Komponent Değişimi</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded-full font-bold">ÇÖZÜLDÜ</span>
+                                </div>
+                                <div class="bg-slate-900/50 border border-slate-800 p-3 rounded-xl flex justify-between items-center shadow-sm">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="text-xl">🏧</span>
+                                        <div>
+                                            <h4 class="text-xs font-bold text-white">Diebold Nixdorf ATM</h4>
+                                            <p class="text-[10px] text-gray-400 font-mono mt-0.5">Kart Okuyucu Kalibrasyonu</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded-full font-bold">ÇÖZÜLDÜ</span>
+                                </div>
+                                <div class="bg-slate-900/50 border border-slate-800 p-3 rounded-xl flex justify-between items-center shadow-sm">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="text-xl">⚙️</span>
+                                        <div>
+                                            <h4 class="text-xs font-bold text-white">NCR Cash Dispenser</h4>
+                                            <p class="text-[10px] text-gray-400 font-mono mt-0.5">Shutter Motor Hizalaması</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded-full font-bold">ÇÖZÜLDÜ</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 `;
